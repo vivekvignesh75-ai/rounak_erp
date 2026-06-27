@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- ── Sales & Quotations ──────────────────────────────────────── -->
+    <record id="ntype_quote_pending" model="rounak.notification.type">
+        <field name="name">Quotation pending acceptance</field>
+        <field name="code">quote_pending</field>
+        <field name="category">sales</field>
+        <field name="audience">customer</field>
+        <field name="importance">normal</field>
+    </record>
+    <record id="ntype_quote_accepted" model="rounak.notification.type">
+        <field name="name">Quotation accepted</field>
+        <field name="code">quote_accepted</field>
+        <field name="category">sales</field>
+        <field name="audience">both</field>
+    </record>
+    <record id="ntype_quote_rejected" model="rounak.notification.type">
+        <field name="name">Quotation rejected</field>
+        <field name="code">quote_rejected</field>
+        <field name="category">sales</field>
+        <field name="audience">both</field>
+    </record>
+
+    <!-- ── Discount & Approval ─────────────────────────────────────── -->
+    <record id="ntype_discount_requested" model="rounak.notification.type">
+        <field name="name">Discount requested</field>
+        <field name="code">discount_requested</field>
+        <field name="category">discount</field>
+        <field name="audience">internal</field>
+    </record>
+    <record id="ntype_discount_approved" model="rounak.notification.type">
+        <field name="name">Discount approved</field>
+        <field name="code">discount_approved</field>
+        <field name="category">discount</field>
+        <field name="audience">both</field>
+    </record>
+    <record id="ntype_discount_rejected" model="rounak.notification.type">
+        <field name="name">Discount rejected</field>
+        <field name="code">discount_rejected</field>
+        <field name="category">discount</field>
+        <field name="audience">both</field>
+    </record>
+
+    <!-- ── Orders & Fulfillment ────────────────────────────────────── -->
+    <record id="ntype_order_payment_pending" model="rounak.notification.type">
+        <field name="name">Order payment pending</field>
+        <field name="code">order_payment_pending</field>
+        <field name="category">order</field>
+        <field name="audience">internal</field>
+    </record>
+    <record id="ntype_order_payment_done" model="rounak.notification.type">
+        <field name="name">Order payment received</field>
+        <field name="code">order_payment_done</field>
+        <field name="category">order</field>
+        <field name="audience">both</field>
+    </record>
+    <record id="ntype_order_in_progress" model="rounak.notification.type">
+        <field name="name">Order in progress</field>
+        <field name="code">order_in_progress</field>
+        <field name="category">order</field>
+        <field name="audience">customer</field>
+    </record>
+    <record id="ntype_order_so_created" model="rounak.notification.type">
+        <field name="name">Sales order created</field>
+        <field name="code">order_so_created</field>
+        <field name="category">order</field>
+        <field name="audience">both</field>
+    </record>
+    <record id="ntype_vendor_approval_needed" model="rounak.notification.type">
+        <field name="name">Vendor approval needed</field>
+        <field name="code">vendor_approval_needed</field>
+        <field name="category">order</field>
+        <field name="audience">internal</field>
+        <field name="importance">high</field>
+    </record>
+    <record id="ntype_order_fulfillment" model="rounak.notification.type">
+        <field name="name">Order fulfillment started</field>
+        <field name="code">order_fulfillment</field>
+        <field name="category">order</field>
+        <field name="audience">internal</field>
+    </record>
+    <record id="ntype_service_activated" model="rounak.notification.type">
+        <field name="name">Service activated</field>
+        <field name="code">service_activated</field>
+        <field name="category">order</field>
+        <field name="audience">customer</field>
+    </record>
+
+    <!-- ── Invoicing & Payments ────────────────────────────────────── -->
+    <record id="ntype_invoice_generated" model="rounak.notification.type">
+        <field name="name">Invoice generated</field>
+        <field name="code">invoice_generated</field>
+        <field name="category">billing</field>
+        <field name="audience">customer</field>
+    </record>
+    <record id="ntype_invoice_overdue" model="rounak.notification.type">
+        <field name="name">Invoice overdue</field>
+        <field name="code">invoice_overdue</field>
+        <field name="category">billing</field>
+        <field name="audience">both</field>
+        <field name="importance">high</field>
+    </record>
+    <record id="ntype_payment_success" model="rounak.notification.type">
+        <field name="name">Payment successful</field>
+        <field name="code">payment_success</field>
+        <field name="category">billing</field>
+        <field name="audience">customer</field>
+    </record>
+    <record id="ntype_payment_failed" model="rounak.notification.type">
+        <field name="name">Payment failed</field>
+        <field name="code">payment_failed</field>
+        <field name="category">billing</field>
+        <field name="audience">customer</field>
+        <field name="importance">high</field>
+    </record>
+
+    <!-- ── Subscriptions ───────────────────────────────────────────── -->
+    <record id="ntype_subscription_renewal" model="rounak.notification.type">
+        <field name="name">Subscription renewal reminder</field>
+        <field name="code">subscription_renewal</field>
+        <field name="category">subscription</field>
+        <field name="audience">customer</field>
+    </record>
+    <record id="ntype_subscription_expiry" model="rounak.notification.type">
+        <field name="name">Subscription expiring</field>
+        <field name="code">subscription_expiry</field>
+        <field name="category">subscription</field>
+        <field name="audience">both</field>
+        <field name="importance">high</field>
+    </record>
+
+    <!-- ── Credit & Transaction Controls ───────────────────────────── -->
+    <record id="ntype_credit_warning" model="rounak.notification.type">
+        <field name="name">Credit limit warning</field>
+        <field name="code">credit_warning</field>
+        <field name="category">credit</field>
+        <field name="audience">both</field>
+        <field name="importance">high</field>
+    </record>
+    <record id="ntype_transaction_blocked" model="rounak.notification.type">
+        <field name="name">Transactions blocked</field>
+        <field name="code">transaction_blocked</field>
+        <field name="category">credit</field>
+        <field name="audience">both</field>
+        <field name="importance">urgent</field>
+    </record>
+    <record id="ntype_transaction_unblocked" model="rounak.notification.type">
+        <field name="name">Transactions unblocked</field>
+        <field name="code">transaction_unblocked</field>
+        <field name="category">credit</field>
+        <field name="audience">both</field>
+    </record>
+
+    <!-- ── Support Tickets ─────────────────────────────────────────── -->
+    <record id="ntype_ticket_created" model="rounak.notification.type">
+        <field name="name">Support ticket created</field>
+        <field name="code">ticket_created</field>
+        <field name="category">support</field>
+        <field name="audience">both</field>
+    </record>
+    <record id="ntype_ticket_replied" model="rounak.notification.type">
+        <field name="name">Support ticket replied</field>
+        <field name="code">ticket_replied</field>
+        <field name="category">support</field>
+        <field name="audience">both</field>
+    </record>
+    <record id="ntype_ticket_resolved" model="rounak.notification.type">
+        <field name="name">Support ticket resolved</field>
+        <field name="code">ticket_resolved</field>
+        <field name="category">support</field>
+        <field name="audience">customer</field>
+    </record>
+
+    <!-- ── License Tickets ─────────────────────────────────────────── -->
+    <record id="ntype_license_overdue" model="rounak.notification.type">
+        <field name="name">License ticket overdue</field>
+        <field name="code">license_overdue</field>
+        <field name="category">license</field>
+        <field name="audience">internal</field>
+        <field name="importance">urgent</field>
+    </record>
+</odoo>

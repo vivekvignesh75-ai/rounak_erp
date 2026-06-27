@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Demo notifications for admin user -->
+    <record id="demo_notif_1" model="rounak.notification">
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="type_id" ref="rounak_erp.ntype_quote_pending"/>
+        <field name="title">New quotation Q2026/0042 pending acceptance</field>
+        <field name="body">&lt;p&gt;CROWE MAK has a quotation worth AED 18,000 awaiting review.&lt;/p&gt;</field>
+        <field name="importance">normal</field>
+    </record>
+
+    <record id="demo_notif_2" model="rounak.notification">
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="type_id" ref="rounak_erp.ntype_invoice_overdue"/>
+        <field name="title">Invoice INV/2026/0038 overdue by 12 days</field>
+        <field name="body">&lt;p&gt;BTA Finance Limited — AED 10,550.36 past due.&lt;/p&gt;</field>
+        <field name="importance">high</field>
+    </record>
+
+    <record id="demo_notif_3" model="rounak.notification">
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="type_id" ref="rounak_erp.ntype_credit_warning"/>
+        <field name="title">Credit limit warning: Gulf Drug LLC</field>
+        <field name="body">&lt;p&gt;Credit usage at 87% of AED 100,000 limit.&lt;/p&gt;</field>
+        <field name="importance">high</field>
+    </record>
+</odoo>

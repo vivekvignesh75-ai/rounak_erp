@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root menu -->
+    <menuitem id="menu_rounak_erp_root"
+              name="Rounak ERP"
+              web_icon="rounak_erp,static/description/icon.png"
+              groups="rounak_erp.group_rounak_sales"
+              sequence="95"/>
+
+    <!-- Notifications -->
+    <menuitem id="menu_rounak_notifications"
+              name="Notifications"
+              parent="menu_rounak_erp_root"
+              action="action_rounak_notification"
+              sequence="10"/>
+
+    <!-- Configuration -->
+    <menuitem id="menu_rounak_config"
+              name="Configuration"
+              parent="menu_rounak_erp_root"
+              groups="rounak_erp.group_rounak_manager"
+              sequence="90"/>
+
+    <menuitem id="menu_rounak_control_rules"
+              name="Control Rules"
+              parent="menu_rounak_config"
+              action="action_rounak_control_rule"
+              groups="rounak_erp.group_rounak_admin"
+              sequence="10"/>
+
+    <menuitem id="menu_rounak_notification_prefs"
+              name="Notification Preferences"
+              parent="menu_rounak_config"
+              action="action_rounak_notification_preference"
+              sequence="20"/>
+
+    <menuitem id="menu_rounak_audit_log"
+              name="Audit Log"
+              parent="menu_rounak_config"
+              action="action_rounak_audit_log"
+              groups="rounak_erp.group_rounak_manager"
+              sequence="30"/>
+</odoo>

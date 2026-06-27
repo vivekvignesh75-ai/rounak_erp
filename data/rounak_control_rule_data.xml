@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="rule_default_credit_limit" model="rounak.control.rule">
+        <field name="name">Default Credit Limit</field>
+        <field name="code">default_credit_limit</field>
+        <field name="category">credit</field>
+        <field name="value_float">50000</field>
+        <field name="description">Default credit limit (AED) for new customers.</field>
+    </record>
+
+    <record id="rule_credit_warning_pct" model="rounak.control.rule">
+        <field name="name">Credit Warning Threshold</field>
+        <field name="code">credit_warning_pct</field>
+        <field name="category">credit</field>
+        <field name="value_float">80</field>
+        <field name="description">Notify when credit usage exceeds this % of the limit.</field>
+    </record>
+
+    <record id="rule_discount_auto_approve" model="rounak.control.rule">
+        <field name="name">Discount Auto-Approve Threshold</field>
+        <field name="code">discount_auto_approve</field>
+        <field name="category">discount</field>
+        <field name="value_float">17</field>
+        <field name="description">Discounts at or below this % are auto-reviewed by Account Manager.</field>
+    </record>
+
+    <record id="rule_discount_escalation" model="rounak.control.rule">
+        <field name="name">Discount Escalation Threshold</field>
+        <field name="code">discount_escalation</field>
+        <field name="category">discount</field>
+        <field name="value_float">17</field>
+        <field name="description">Discounts above this % require Manager-level approval.</field>
+    </record>
+
+    <record id="rule_auto_block_overdue_days" model="rounak.control.rule">
+        <field name="name">Auto-Block After Overdue Days</field>
+        <field name="code">auto_block_overdue_days</field>
+        <field name="category">block</field>
+        <field name="value_float">30</field>
+        <field name="description">Block transactions when invoices are overdue by this many days.</field>
+    </record>
+
+    <record id="rule_payment_net_0" model="rounak.control.rule">
+        <field name="name">Payment Terms: Net 0</field>
+        <field name="code">payment_net_0</field>
+        <field name="category">payment</field>
+        <field name="value_float">0</field>
+        <field name="description">Due immediately on invoice.</field>
+    </record>
+
+    <record id="rule_payment_net_15" model="rounak.control.rule">
+        <field name="name">Payment Terms: Net 15</field>
+        <field name="code">payment_net_15</field>
+        <field name="category">payment</field>
+        <field name="value_float">15</field>
+    </record>
+
+    <record id="rule_payment_net_30" model="rounak.control.rule">
+        <field name="name">Payment Terms: Net 30</field>
+        <field name="code">payment_net_30</field>
+        <field name="category">payment</field>
+        <field name="value_float">30</field>
+    </record>
+
+    <record id="rule_payment_net_45" model="rounak.control.rule">
+        <field name="name">Payment Terms: Net 45</field>
+        <field name="code">payment_net_45</field>
+        <field name="category">payment</field>
+        <field name="value_float">45</field>
+    </record>
+</odoo>

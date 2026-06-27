@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="rounak_erp.NotificationBell" owl="1">
+        <div class="o_rounak_notification_bell o_nav_entry"
+             t-on-click="toggleDropdown">
+            <i class="fa fa-bell-o fa-lg"/>
+            <span t-if="state.count > 0" class="rounak-bell-badge"
+                  t-esc="state.count > 99 ? '99+' : state.count"/>
+
+            <div t-if="state.open" class="rounak-notification-dropdown"
+                 t-on-click.stop="">
+                <div class="rounak-notif-header">
+                    <span>Notifications</span>
+                    <a href="#" t-on-click.prevent="markAllRead"
+                       style="font-size:12px;font-weight:400;">
+                        Mark all read
+                    </a>
+                </div>
+
+                <t t-if="state.items.length === 0">
+                    <div class="rounak-notif-empty">No notifications</div>
+                </t>
+                <t t-else="">
+                    <t t-foreach="state.items" t-as="item" t-key="item.id">
+                        <div t-attf-class="rounak-notif-item {{ !item.is_read ? 'unread' : '' }}"
+                             t-on-click="() => this.markRead(item)">
+                            <div class="rounak-notif-title" t-esc="item.title"/>
+                            <div class="rounak-notif-time"
+                                 t-esc="item.create_date"/>
+                        </div>
+                    </t>
+                </t>
+
+                <div class="rounak-notif-header" style="justify-content:center;">
+                    <a href="#" t-on-click.prevent="openFullList"
+                       style="font-size:12px;">
+                        View all notifications
+                    </a>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

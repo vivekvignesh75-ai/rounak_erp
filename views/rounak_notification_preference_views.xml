@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_rounak_notification_preference_tree" model="ir.ui.view">
+        <field name="name">rounak.notification.preference.tree</field>
+        <field name="model">rounak.notification.preference</field>
+        <field name="arch" type="xml">
+            <tree string="Notification Preferences" editable="bottom">
+                <field name="user_id"/>
+                <field name="type_id"/>
+                <field name="inapp"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_rounak_notification_preference" model="ir.actions.act_window">
+        <field name="name">Notification Preferences</field>
+        <field name="res_model">rounak.notification.preference</field>
+        <field name="view_mode">tree</field>
+    </record>
+</odoo>

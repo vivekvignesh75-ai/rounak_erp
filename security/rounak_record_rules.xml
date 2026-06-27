@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Customers see only their own notifications -->
+    <record id="rule_notification_own" model="ir.rule">
+        <field name="name">Notification: own only</field>
+        <field name="model_id" ref="model_rounak_notification"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('rounak_erp.group_rounak_customer'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Customers see only their own notification preferences -->
+    <record id="rule_notification_pref_own" model="ir.rule">
+        <field name="name">Notification Pref: own only</field>
+        <field name="model_id" ref="model_rounak_notification_preference"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('rounak_erp.group_rounak_customer'))]"/>
+    </record>
+
+    <!-- Customers see only order flows linked to their partner -->
+    <record id="rule_order_flow_own" model="ir.rule">
+        <field name="name">Order Flow: own partner</field>
+        <field name="model_id" ref="model_rounak_order_flow"/>
+        <field name="domain_force">[('partner_id', 'child_of', user.commercial_partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('rounak_erp.group_rounak_customer'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Sales see all order flows (company-scoped would be added if multi-company) -->
+    <record id="rule_order_flow_sales" model="ir.rule">
+        <field name="name">Order Flow: sales full</field>
+        <field name="model_id" ref="model_rounak_order_flow"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('rounak_erp.group_rounak_sales'))]"/>
+    </record>
+
+    <!-- Managers see all audit logs -->
+    <record id="rule_audit_log_manager" model="ir.rule">
+        <field name="name">Audit Log: manager read all</field>
+        <field name="model_id" ref="model_rounak_audit_log"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('rounak_erp.group_rounak_manager'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_rounak_credit" model="ir.ui.view">
+        <field name="name">res.partner.form.rounak.credit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']" position="after">
+                <page string="Rounak Controls" name="rounak_controls"
+                      groups="rounak_erp.group_rounak_accounts">
+                    <group>
+                        <group string="Credit">
+                            <field name="credit_limit" widget="monetary"/>
+                            <field name="rounak_credit_balance" widget="monetary"/>
+                            <field name="rounak_credit_available" widget="monetary"/>
+                            <field name="rounak_payment_terms_code"/>
+                        </group>
+                        <group string="Transaction Controls">
+                            <field name="rounak_transaction_blocked"/>
+                            <field name="rounak_block_reason"
+                                   invisible="not rounak_transaction_blocked"/>
+                            <field name="rounak_portal_locked"/>
+                        </group>
+                    </group>
+                    <div class="oe_button_box" name="rounak_controls_buttons">
+                        <button name="action_block_transactions" type="object"
+                                string="Block Transactions" class="btn-danger"
+                                invisible="rounak_transaction_blocked"
+                                groups="rounak_erp.group_rounak_manager"/>
+                        <button name="action_unblock_transactions" type="object"
+                                string="Unblock Transactions" class="btn-success"
+                                invisible="not rounak_transaction_blocked"
+                                groups="rounak_erp.group_rounak_manager"/>
+                        <button name="action_lock_portal" type="object"
+                                string="Lock Portal" class="btn-warning"
+                                invisible="rounak_portal_locked"
+                                groups="rounak_erp.group_rounak_manager"/>
+                        <button name="action_unlock_portal" type="object"
+                                string="Unlock Portal"
+                                invisible="not rounak_portal_locked"
+                                groups="rounak_erp.group_rounak_manager"/>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

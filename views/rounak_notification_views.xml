@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_rounak_notification_tree" model="ir.ui.view">
+        <field name="name">rounak.notification.tree</field>
+        <field name="model">rounak.notification</field>
+        <field name="arch" type="xml">
+            <tree string="Notifications" default_order="create_date desc"
+                  decoration-bf="not is_read">
+                <field name="create_date" string="Date"/>
+                <field name="user_id"/>
+                <field name="type_id"/>
+                <field name="category" optional="show"/>
+                <field name="title"/>
+                <field name="importance" widget="badge"
+                       decoration-danger="importance == 'urgent'"
+                       decoration-warning="importance == 'high'"/>
+                <field name="is_read"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_rounak_notification_form" model="ir.ui.view">
+        <field name="name">rounak.notification.form</field>
+        <field name="model">rounak.notification</field>
+        <field name="arch" type="xml">
+            <form string="Notification">
+                <header>
+                    <button name="action_mark_read" type="object" string="Mark Read"
+                            class="btn-primary" invisible="is_read"/>
+                    <button name="action_mark_unread" type="object" string="Mark Unread"
+                            invisible="not is_read"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="type_id"/>
+                            <field name="category"/>
+                            <field name="importance"/>
+                        </group>
+                        <group>
+                            <field name="is_read"/>
+                            <field name="read_date"/>
+                            <field name="res_model"/>
+                            <field name="res_id"/>
+                        </group>
+                    </group>
+                    <group string="Content">
+                        <field name="title"/>
+                        <field name="body"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_rounak_notification_search" model="ir.ui.view">
+        <field name="name">rounak.notification.search</field>
+        <field name="model">rounak.notification</field>
+        <field name="arch" type="xml">
+            <search string="Notifications">
+                <field name="title"/>
+                <field name="user_id"/>
+                <field name="type_id"/>
+                <filter name="unread" string="Unread" domain="[('is_read','=',False)]"/>
+                <filter name="urgent" string="Urgent" domain="[('importance','=','urgent')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_category" string="Category" context="{'group_by':'category'}"/>
+                    <filter name="group_user" string="User" context="{'group_by':'user_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_rounak_notification" model="ir.actions.act_window">
+        <field name="name">Notifications</field>
+        <field name="res_model">rounak.notification</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_unread': 1}</field>
+    </record>
+</odoo>

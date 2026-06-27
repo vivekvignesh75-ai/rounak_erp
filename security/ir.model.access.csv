@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+rounak_notification_type_customer,rounak.notification.type customer,model_rounak_notification_type,rounak_erp.group_rounak_customer,1,0,0,0
+rounak_notification_type_admin,rounak.notification.type admin,model_rounak_notification_type,rounak_erp.group_rounak_admin,1,1,1,1
+rounak_notification_customer,rounak.notification customer,model_rounak_notification,rounak_erp.group_rounak_customer,1,1,0,0
+rounak_notification_sales,rounak.notification sales,model_rounak_notification,rounak_erp.group_rounak_sales,1,1,1,0
+rounak_notification_admin,rounak.notification admin,model_rounak_notification,rounak_erp.group_rounak_admin,1,1,1,1
+rounak_notification_preference_customer,rounak.notification.preference customer,model_rounak_notification_preference,rounak_erp.group_rounak_customer,1,1,1,1
+rounak_control_rule_manager,rounak.control.rule manager,model_rounak_control_rule,rounak_erp.group_rounak_manager,1,0,0,0
+rounak_control_rule_admin,rounak.control.rule admin,model_rounak_control_rule,rounak_erp.group_rounak_admin,1,1,1,1
+rounak_audit_log_manager,rounak.audit.log manager,model_rounak_audit_log,rounak_erp.group_rounak_manager,1,0,0,0
+rounak_audit_log_admin,rounak.audit.log admin,model_rounak_audit_log,rounak_erp.group_rounak_admin,1,1,1,0
+rounak_order_flow_customer,rounak.order.flow customer,model_rounak_order_flow,rounak_erp.group_rounak_customer,1,0,0,0
+rounak_order_flow_sales,rounak.order.flow sales,model_rounak_order_flow,rounak_erp.group_rounak_sales,1,1,1,0
+rounak_order_flow_admin,rounak.order.flow admin,model_rounak_order_flow,rounak_erp.group_rounak_admin,1,1,1,1
