@@ -1,0 +1,116 @@
+/* Rounak ERP: internal dashboard styles */
+$rk-navy: #1B2A4A;
+$rk-primary: #0078D4;
+$rk-border: #EDEBE9;
+$rk-bg: #F3F2F1;
+$rk-text: #323130;
+$rk-secondary: #605E5C;
+$rk-white: #ffffff;
+$rk-danger: #D13438;
+$rk-warning: #F7630C;
+
+.rounak-int-dashboard {
+    background: $rk-bg;
+    min-height: 100%;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.rounak-int-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: $rk-text;
+}
+
+.rounak-int-alerts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rounak-int-alert {
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &.rounak-int-alert-danger {
+        background: rgba($rk-danger, 0.08);
+        border-left: 3px solid $rk-danger;
+        color: $rk-danger;
+    }
+
+    &.rounak-int-alert-warning {
+        background: rgba($rk-warning, 0.08);
+        border-left: 3px solid $rk-warning;
+        color: darken($rk-warning, 10%);
+    }
+
+    &.rounak-int-alert-info {
+        background: rgba($rk-primary, 0.06);
+        border-left: 3px solid $rk-primary;
+        color: $rk-primary;
+    }
+}
+
+.rounak-int-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+}
+
+.rounak-int-kpi {
+    background: $rk-white;
+    border: 1px solid $rk-border;
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.15s;
+
+    &:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    &.rounak-int-kpi-danger {
+        border-left: 3px solid $rk-danger;
+
+        .rounak-int-kpi-value {
+            color: $rk-danger;
+        }
+    }
+
+    .rounak-int-kpi-value {
+        font-size: 28px;
+        font-weight: 600;
+        color: $rk-text;
+    }
+
+    .rounak-int-kpi-label {
+        font-size: 12px;
+        color: $rk-secondary;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        margin-top: 4px;
+    }
+}
+
+.rounak-int-card {
+    background: $rk-white;
+    border: 1px solid $rk-border;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.rounak-int-card-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid $rk-border;
+    font-weight: 600;
+    font-size: 14px;
+    color: $rk-text;
+}
+
+.rounak-int-card-body {
+    padding: 16px;
+}

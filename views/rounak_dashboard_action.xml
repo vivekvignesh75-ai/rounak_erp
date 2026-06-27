@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_rounak_internal_dashboard" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">rounak_erp.internal_dashboard</field>
+    </record>
+
+    <record id="seq_rounak_order_flow" model="ir.sequence">
+        <field name="name">Rounak Order Flow</field>
+        <field name="code">rounak.order.flow</field>
+        <field name="prefix">ROF/%(year)s/</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

@@ -7,6 +7,13 @@
               groups="rounak_erp.group_rounak_sales"
               sequence="95"/>
 
+    <!-- Dashboard -->
+    <menuitem id="menu_rounak_dashboard"
+              name="Dashboard"
+              parent="menu_rounak_erp_root"
+              action="action_rounak_internal_dashboard"
+              sequence="5"/>
+
     <!-- Notifications -->
     <menuitem id="menu_rounak_notifications"
               name="Notifications"

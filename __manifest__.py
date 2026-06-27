@@ -52,6 +52,7 @@ models, channels or third-party modules. All identifiers are namespaced `rounak_
         'views/rounak_control_rule_views.xml',
         'views/rounak_audit_log_views.xml',
         'views/res_partner_views.xml',
+        'views/rounak_dashboard_action.xml',
         'views/rounak_erp_menus.xml',
     ],
     'demo': [
@@ -60,8 +61,11 @@ models, channels or third-party modules. All identifiers are namespaced `rounak_
     'assets': {
         'web.assets_backend': [
             'rounak_erp/static/src/scss/rounak_fluent.scss',
+            'rounak_erp/static/src/scss/rounak_dashboard.scss',
             'rounak_erp/static/src/js/notification_bell.js',
+            'rounak_erp/static/src/js/rounak_dashboard.js',
             'rounak_erp/static/src/xml/notification_bell.xml',
+            'rounak_erp/static/src/xml/rounak_dashboard.xml',
         ],
     },
     'installable': True,

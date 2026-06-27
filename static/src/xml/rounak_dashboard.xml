@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="rounak_erp.InternalDashboard" owl="1">
+        <div class="rounak-int-dashboard p-4">
+            <h2 class="rounak-int-title mb-4">Rounak ERP Dashboard</h2>
+
+            <div t-if="state.loading" class="text-center py-5">
+                <i class="fa fa-spinner fa-spin fa-2x text-muted"/>
+            </div>
+
+            <t t-if="!state.loading">
+                <!-- Alert Panel -->
+                <div t-if="state.alerts.length" class="rounak-int-alerts mb-4">
+                    <t t-foreach="state.alerts" t-as="alert" t-key="alert_index">
+                        <div t-attf-class="rounak-int-alert rounak-int-alert-#{alert.type}">
+                            <i t-attf-class="fa #{alert.type === 'danger' ? 'fa-exclamation-circle' : alert.type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle'}"/>
+                            <span t-esc="alert.text"/>
+                        </div>
+                    </t>
+                </div>
+
+                <!-- KPI Grid -->
+                <div class="rounak-int-kpi-grid mb-4">
+                    <div class="rounak-int-kpi" t-on-click="openPendingQuotes" style="cursor:pointer;">
+                        <div class="rounak-int-kpi-value" t-esc="state.kpis.pendingQuotes"/>
+                        <div class="rounak-int-kpi-label">Pending Quotes</div>
+                    </div>
+                    <div class="rounak-int-kpi">
+                        <div class="rounak-int-kpi-value" t-esc="state.kpis.openOrders"/>
+                        <div class="rounak-int-kpi-label">Open Orders</div>
+                    </div>
+                    <div class="rounak-int-kpi">
+                        <div class="rounak-int-kpi-value" t-esc="state.kpis.dueInvoices"/>
+                        <div class="rounak-int-kpi-label">Due Invoices</div>
+                    </div>
+                    <div class="rounak-int-kpi rounak-int-kpi-danger" t-on-click="openOverdueInvoices"
+                         style="cursor:pointer;">
+                        <div class="rounak-int-kpi-value" t-esc="state.kpis.overdueInvoices"/>
+                        <div class="rounak-int-kpi-label">Overdue</div>
+                    </div>
+                    <div class="rounak-int-kpi" t-on-click="openOpenTickets" style="cursor:pointer;">
+                        <div class="rounak-int-kpi-value" t-esc="state.kpis.openTickets"/>
+                        <div class="rounak-int-kpi-label">Open Tickets</div>
+                    </div>
+                    <div class="rounak-int-kpi">
+                        <div class="rounak-int-kpi-value" t-esc="state.kpis.pendingApprovals"/>
+                        <div class="rounak-int-kpi-label">Pending Approvals</div>
+                    </div>
+                    <div class="rounak-int-kpi rounak-int-kpi-danger" t-on-click="openBlockedPartners"
+                         style="cursor:pointer;">
+                        <div class="rounak-int-kpi-value" t-esc="state.kpis.blockedPartners"/>
+                        <div class="rounak-int-kpi-label">Blocked Partners</div>
+                    </div>
+                </div>
+
+                <!-- Recent Audit Log -->
+                <div class="rounak-int-card">
+                    <div class="rounak-int-card-header">Recent Activity</div>
+                    <div class="rounak-int-card-body p-0">
+                        <table class="table table-sm mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>User</th>
+                                    <th>Action</th>
+                                    <th>Summary</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="state.recentAudit" t-as="log" t-key="log.id">
+                                    <tr>
+                                        <td t-esc="log.create_date" style="font-size:12px;"/>
+                                        <td t-esc="log.user_id[1]" style="font-size:12px;"/>
+                                        <td><span class="badge bg-secondary" t-esc="log.action" style="font-size:11px;"/></td>
+                                        <td t-esc="log.summary" style="font-size:12px;"/>
+                                    </tr>
+                                </t>
+                                <tr t-if="!state.recentAudit || !state.recentAudit.length">
+                                    <td colspan="4" class="text-muted text-center">No activity yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>
