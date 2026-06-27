@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_rounak_res_config_settings" model="ir.ui.view">
+        <field name="name">res.config.settings.rounak</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Rounak ERP" string="Rounak ERP"
+                     data-key="rounak_erp"
+                     groups="rounak_erp.group_rounak_admin">
+                    <block title="Credit &amp; Transaction Controls" name="rounak_credit">
+                        <setting string="Default Credit Limit"
+                                 help="Default credit limit (AED) for new customers">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label for="rounak_default_credit_limit" class="col-lg-4"/>
+                                    <field name="rounak_default_credit_limit" class="col-lg-4"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Auto-Block Overdue Days"
+                                 help="Block transactions when invoices overdue by this many days">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label for="rounak_auto_block_overdue_days" class="col-lg-4"/>
+                                    <field name="rounak_auto_block_overdue_days" class="col-lg-4"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Discount Approval" name="rounak_discount">
+                        <setting string="Auto-Approve Threshold"
+                                 help="Discounts at or below this % are auto-approved by Account Manager">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label for="rounak_discount_auto_threshold" class="col-lg-4"/>
+                                    <field name="rounak_discount_auto_threshold" class="col-lg-4"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Escalation Threshold"
+                                 help="Discounts above this % require Manager-level approval">
+                            <div class="content-group">
+                                <div class="row mt-2">
+                                    <label for="rounak_discount_escalation_threshold" class="col-lg-4"/>
+                                    <field name="rounak_discount_escalation_threshold" class="col-lg-4"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="Notifications" name="rounak_notifications">
+                        <setting string="Enable Notifications"
+                                 help="Master switch for the Rounak notification system">
+                            <field name="rounak_notifications_enabled"/>
+                        </setting>
+                        <setting string="Email Notifications"
+                                 help="Send notification emails (in addition to in-app)">
+                            <field name="rounak_email_notifications"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

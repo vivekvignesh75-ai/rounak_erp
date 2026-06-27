@@ -8,3 +8,5 @@ from . import rounak_order_flow
 from . import res_partner
 from . import res_users
 from . import res_config_settings
+from . import discount_request
+from . import license_ticket

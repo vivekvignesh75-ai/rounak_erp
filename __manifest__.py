@@ -53,6 +53,8 @@ models, channels or third-party modules. All identifiers are namespaced `rounak_
         'views/rounak_audit_log_views.xml',
         'views/res_partner_views.xml',
         'views/rounak_dashboard_action.xml',
+        'views/license_ticket_views.xml',
+        'views/res_config_settings_views.xml',
         'views/rounak_erp_menus.xml',
     ],
     'demo': [

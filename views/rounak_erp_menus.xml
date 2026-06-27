@@ -21,6 +21,14 @@
               action="action_rounak_notification"
               sequence="10"/>
 
+    <!-- License Queue -->
+    <menuitem id="menu_rounak_license_queue"
+              name="License Queue"
+              parent="menu_rounak_erp_root"
+              action="action_license_ticket_queue"
+              groups="rounak_erp.group_rounak_licensing"
+              sequence="20"/>
+
     <!-- Configuration -->
     <menuitem id="menu_rounak_config"
               name="Configuration"

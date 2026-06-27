@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- License ticket queue: Dynamics-style list view -->
+    <record id="view_license_ticket_tree" model="ir.ui.view">
+        <field name="name">sh.helpdesk.ticket.license.tree</field>
+        <field name="model">sh.helpdesk.ticket</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <tree string="License Ticket Queue" default_order="create_date asc"
+                  decoration-danger="rounak_is_overdue"
+                  decoration-bf="rounak_is_overdue">
+                <field name="name" string="Ticket #"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="rounak_license_type" string="Type"/>
+                <field name="create_date" string="Created"/>
+                <field name="rounak_days_open" string="Days Open"/>
+                <field name="rounak_is_overdue" string="OVERDUE" widget="boolean"/>
+                <field name="rounak_current_qty" string="Current"/>
+                <field name="rounak_increase_qty" string="+ Increase"/>
+                <field name="rounak_new_total_qty" string="= New Total"/>
+                <field name="stage_id" string="Stage"/>
+                <field name="rounak_provisioning_approved" string="Prov. OK" widget="boolean"/>
+                <field name="rounak_close_approved" string="Close OK" widget="boolean"/>
+                <field name="user_id" string="Assigned"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- License ticket form extension -->
+    <record id="view_license_ticket_form" model="ir.ui.view">
+        <field name="name">sh.helpdesk.ticket.license.form</field>
+        <field name="model">sh.helpdesk.ticket</field>
+        <field name="inherit_id" ref="sh_all_in_one_helpdesk.sh_helpdesk_ticket_form_view"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="License Queue" name="rounak_license"
+                       groups="rounak_erp.group_rounak_licensing">
+                    <group>
+                        <field name="rounak_license_type"/>
+                        <field name="rounak_current_qty"/>
+                        <field name="rounak_increase_qty"/>
+                        <field name="rounak_new_total_qty"/>
+                    </group>
+                    <group>
+                        <field name="rounak_days_open"/>
+                        <field name="rounak_is_overdue"/>
+                        <field name="rounak_provisioning_approved"/>
+                        <field name="rounak_close_approved"/>
+                    </group>
+                    <group string="Distributor (Internal — NEVER share with customer)"
+                           groups="rounak_erp.group_rounak_licensing">
+                        <field name="rounak_distributor_id"/>
+                        <field name="rounak_distributor_portal"/>
+                        <field name="rounak_distributor_discount"/>
+                        <field name="rounak_our_cost"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_approve_provisioning" type="object"
+                        string="Approve Provisioning"
+                        class="btn-primary"
+                        invisible="rounak_provisioning_approved"
+                        groups="rounak_erp.group_rounak_manager"/>
+                <button name="action_approve_close" type="object"
+                        string="Approve Close"
+                        class="btn-success"
+                        invisible="rounak_close_approved or not rounak_provisioning_approved"
+                        groups="rounak_erp.group_rounak_manager"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Search view for license queue -->
+    <record id="view_license_ticket_search" model="ir.ui.view">
+        <field name="name">sh.helpdesk.ticket.license.search</field>
+        <field name="model">sh.helpdesk.ticket</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <search string="License Tickets">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter name="overdue" string="OVERDUE (&gt;2 days)"
+                        domain="[('rounak_is_overdue','=',True)]"/>
+                <filter name="professional" string="Professional Service"
+                        domain="[('rounak_license_type','=','professional_service')]"/>
+                <filter name="qty_increase" string="Quantity Increase"
+                        domain="[('rounak_license_type','=','qty_increase')]"/>
+                <filter name="pending_provisioning" string="Pending Provisioning"
+                        domain="[('rounak_provisioning_approved','=',False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_type" string="License Type"
+                            context="{'group_by':'rounak_license_type'}"/>
+                    <filter name="group_stage" string="Stage"
+                            context="{'group_by':'stage_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- License queue action -->
+    <record id="action_license_ticket_queue" model="ir.actions.act_window">
+        <field name="name">License Ticket Queue</field>
+        <field name="res_model">sh.helpdesk.ticket</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_license_ticket_tree"/>
+        <field name="domain">[('rounak_license_type','!=',False)]</field>
+        <field name="context">{'search_default_overdue': 1}</field>
+    </record>
+
+    <!-- Discount request counter-offer view extension -->
+    <record id="view_discount_request_counter_form" model="ir.ui.view">
+        <field name="name">discount.request.counter.form</field>
+        <field name="model">discount.request</field>
+        <field name="inherit_id" ref="adigielite_it_service.view_discount_request_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Counter-Offer" name="rounak_counter_offer"
+                       groups="rounak_erp.group_rounak_sales">
+                    <group>
+                        <field name="counter_offer_pct"/>
+                        <field name="counter_offer_reason"/>
+                    </group>
+                    <group>
+                        <field name="counter_offer_state" widget="badge"
+                               decoration-warning="counter_offer_state == 'offered'"
+                               decoration-success="counter_offer_state == 'accepted'"
+                               decoration-danger="counter_offer_state == 'declined'"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_counter_offer" type="object"
+                        string="Send Counter-Offer"
+                        class="btn-warning"
+                        invisible="state != 'pending' or counter_offer_state == 'offered'"
+                        groups="rounak_erp.group_rounak_sales"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
